@@ -5,10 +5,14 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import { useDispatch } from 'react-redux';
 import { getCartItem, removeCartItem, updateCartItem } from '../../State/Cart/Action';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
-import { useEffect } from 'react';
+import { use, useEffect } from 'react';
 
 const Cart = ({item}) => {
     const dispatch=useDispatch()
+    useEffect(() => {
+        
+        dispatch(getCartItem());
+    },[])
     
     // const {cart}=useSelector(state=>state)
     // console.log(item);
