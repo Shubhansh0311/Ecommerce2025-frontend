@@ -26,6 +26,7 @@ import AuthModal from "../../Auth/AuthModal";
 import { navigation } from "./NavigationData.js";
 import { useDispatch, useSelector } from "react-redux";
 import { getUser } from "../../State/Auth/Action.js";
+import { getCartItem } from "../../State/Cart/Action.js";
 
 
 export default function Navigation() {
@@ -40,7 +41,7 @@ export default function Navigation() {
  
   const dispatch = useDispatch();
   useEffect((jwt) => {
-    
+  dispatch(getCartItem())
       dispatch(getUser(jwt)).then(()=>{
         handleAuthClose()
       
@@ -54,7 +55,7 @@ export default function Navigation() {
  
   const [openAuthModal, setOpenAuthModal] = useState(false);
   const [open, setOpen] = useState(false);
-
+  const { cart } = useSelector((store) => store);
   // const navigate=useNavigate()
 
   const handleCategoryClick = (category, section, item) => {
@@ -419,7 +420,7 @@ export default function Navigation() {
                       className="size-6 shrink-0 text-gray-400 group-hover:text-gray-500"
                     />
                     <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">
-                      0
+                      {cart.cart?.cartItems.length}
                     </span>
                     <span className="sr-only">items in cart, view bag</span>
                   </a>

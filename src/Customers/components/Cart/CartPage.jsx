@@ -17,6 +17,7 @@ const CartPage = () => {
 
     dispatch(getCartItem());
   }, []);
+  
   // console.log(cart?.cart.cartItems);
 
   const handleCheckout = () => {
