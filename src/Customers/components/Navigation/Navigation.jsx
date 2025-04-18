@@ -410,16 +410,14 @@ export default function Navigation() {
                 {/* Cart */}
                 <div className="ml-4 flow-root lg:ml-6">
                   <a href="/cart" className="group -m-2 flex items-center p-2">
-                    <ShoppingBagIcon
-                      onClick={handleCart}
-                      aria-hidden="true"
-                      className="size-6 shrink-0 text-gray-400 group-hover:text-gray-500"
-                    />
+                  
                     <Badge
                       badgeContent={cart.cart?.cartItems.length}
                       color="primary"
                     >
-                      <ShoppingCartIcon color="action" />
+                      <ShoppingCartIcon 
+                            onClick={handleCart}
+                      color="action" />
                     </Badge>
                     <span className="sr-only">items in cart, view bag</span>
                   </a>
