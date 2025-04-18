@@ -20,39 +20,35 @@ import {
   ShoppingBagIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
-import { Avatar } from "@mui/material";
-import {useLocation, useNavigate } from "react-router-dom";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import { Avatar, Badge } from "@mui/material";
+import { useLocation, useNavigate } from "react-router-dom";
 import AuthModal from "../../Auth/AuthModal";
 import { navigation } from "./NavigationData.js";
 import { useDispatch, useSelector } from "react-redux";
 import { getUser } from "../../State/Auth/Action.js";
 import { getCartItem } from "../../State/Cart/Action.js";
 
-
 export default function Navigation() {
   // const [navigate, setNavigate] = useState();
 
   const navigate = useNavigate();
-  const {auth} = useSelector((store) => store);
-  
-  
+  const { auth } = useSelector((store) => store);
+
   const jwt = localStorage.getItem("jwt");
   const location = useLocation();
- 
+
   const dispatch = useDispatch();
-  useEffect((jwt) => {
-  dispatch(getCartItem())
-      dispatch(getUser(jwt)).then(()=>{
-        handleAuthClose()
-      
-      })
-      ;
-  
+  useEffect(
+    (jwt) => {
+      dispatch(getCartItem());
+      dispatch(getUser(jwt)).then(() => {
+        handleAuthClose();
+      });
     },
-    [jwt, auth.jwt,dispatch]
+    [jwt, auth.jwt, dispatch]
   );
 
- 
   const [openAuthModal, setOpenAuthModal] = useState(false);
   const [open, setOpen] = useState(false);
   const { cart } = useSelector((store) => store);
@@ -65,7 +61,7 @@ export default function Navigation() {
   };
 
   const handleAuthOpen = () => {
-    navigate('/login')
+    navigate("/login");
     setOpenAuthModal(true);
   };
   const handleAuthClose = () => {
@@ -91,9 +87,9 @@ export default function Navigation() {
   };
 
   const handleLogout = () => {
-    dispatch({type:'LOGOUT',payload:null})
-    window.location.reload()
-    localStorage.clear()
+    dispatch({ type: "LOGOUT", payload: null });
+    window.location.reload();
+    localStorage.clear();
     // handleAuthClose(false)
   };
 
@@ -354,7 +350,7 @@ export default function Navigation() {
               </PopoverGroup>
 
               <div className="ml-auto flex items-center">
-                {auth.user?.firstName[0]? (
+                {auth.user?.firstName[0] ? (
                   <Popover className="relative">
                     <PopoverButton className="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800">
                       <Avatar
@@ -419,9 +415,12 @@ export default function Navigation() {
                       aria-hidden="true"
                       className="size-6 shrink-0 text-gray-400 group-hover:text-gray-500"
                     />
-                    <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">
-                      {cart.cart?.cartItems.length}
-                    </span>
+                    <Badge
+                      badgeContent={cart.cart?.cartItems.length}
+                      color="primary"
+                    >
+                      <ShoppingCartIcon color="action" />
+                    </Badge>
                     <span className="sr-only">items in cart, view bag</span>
                   </a>
                 </div>
@@ -431,7 +430,6 @@ export default function Navigation() {
         </nav>
       </header>
       <AuthModal handleClose={handleAuthClose} openAuthModal={openAuthModal} />
-  
     </div>
   );
 }
