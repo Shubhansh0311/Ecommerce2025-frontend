@@ -305,7 +305,7 @@ export const womens = [
       discountedPrice: 3499,
       category: 'women',
       subcategory: 'clothing',
-      type: 'dress'
+      type: 'ethnic'
     },
     {
       id: 302,
@@ -353,7 +353,7 @@ export const womens = [
       discountedPrice: 1724,
       category: 'women',
       subcategory: 'clothing',
-      type: 'pants'
+      type: 'dresses'
     },
     {
       id: 306,
@@ -365,7 +365,7 @@ export const womens = [
       discountedPrice: 1119,
       category: 'women',
       subcategory: 'clothing',
-      type: 'top'
+      type: 'tops'
     }
   ];
   
