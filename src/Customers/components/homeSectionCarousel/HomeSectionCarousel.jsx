@@ -11,7 +11,7 @@ const HomeSectionCarousel = ({sectionName,data}) => {
     const[activeIndex,setActiveIndex]=useState(0)
     const reponsive={1024:{items:5.5},768:{items:3},0:{items:1}}
     
-const items=data.map((item)=><HomeSectionCard key={item.id} title={item.title} description={item.description} imageUrl={item.imageUrl}/>)
+const items=data.map((item)=><HomeSectionCard itemss={item}/>)
 
 
 

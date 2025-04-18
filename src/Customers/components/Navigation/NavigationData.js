@@ -26,11 +26,10 @@ export const navigation = {
             { name: 'Suits', href: '#' },
             { name: 'Sarees', href: '#' },
             { name: 'Tops', href: '#' },
-            { name: 'Skirts', href: '#' },
-            { name: 'Denim', href: '#' },
-            { name: 'Sweaters', href: '#' },
-            { name: 'Jackets', href: '#' },
-            { name: 'Ethnic Wear', href: '#' },
+          
+        
+            { name: 'Coats', href: '#' },
+            { name: 'Ethnic', href: '#' },
          
           ],
         },

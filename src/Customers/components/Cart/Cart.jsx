@@ -47,11 +47,11 @@ const Cart = ({item}) => {
         <div className="shadow-lg p-4 border rounded-md ">
             <div className="flex item-center">
                 <div className="sm:w-[5rem] sm:h-[5rem]  lg:w-[9rem] lg:h-[9rem] ">
-                    <img src={item.product?.imageUrl} className='w-[140px]  max-h-[150px] object-cover object-top' alt="" />
+                    <img src={item?.product?.imageUrl} className='w-[140px]  max-h-[150px] object-cover object-top' alt="" />
                 </div>
                 <div className="ml-5 space-y-1 mt-3">
-                    <p className='font-semibold'>{item.product?.title}</p>
-                    <p className='opacity-50 font-semibold'>Size : {item?.size} , {item.product?.colors}</p>
+                    <p className='font-semibold'>{item?.product?.title}</p>
+                    <p className='opacity-50 font-semibold'>Size : {item?.size} , {item?.product?.colors}</p>
                     <p className=' opacity-50'>Seller:{item?.product?.brand}</p>
                     <div className="flex space-x-3 mt-2">
                         <p className=' font-semibold '>₹{item?.product?.discountedPrice}</p>

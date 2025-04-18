@@ -148,7 +148,7 @@ useEffect(()=>{
 
                                 <img
                                     alt={items.alt}
-                                    src={items.src}
+                                    src={products.product?.imageUrl}
                                     className="aspect-[4/5] size-full rounded-xl object-cover my-2 sm:rounded-lg lg:aspect-auto w-[5rem]  gap-x-5  h-[5rem] sm:max-w-[10rem] sm:max-h-[10rem] mx-auto"
                                 />
 
