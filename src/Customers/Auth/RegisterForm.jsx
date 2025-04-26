@@ -38,7 +38,7 @@ const RegisterForm = () => {
   };
 
   return (
-    <div>
+    <div className="w-full max-w-sm mx-auto  p-5 border shadow-lg rounded-md">
       <form onSubmit={handleSubmit}>
         <Grid container spacing={3}>
           <Grid item xs={12} sm={6}>

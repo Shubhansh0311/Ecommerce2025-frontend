@@ -28,10 +28,10 @@ dispatch(getUser(jwt));
   };
 
   return (
-    <div className="">
+    <div className="w-full max-w-sm mx-auto p-5 border shadow-lg rounded-md">
       <form onSubmit={handleSubmit}>
-        <Grid container spacing={3}>
-          <Grid item xs={12}>
+        <Grid container  spacing={2}>
+          <Grid item  xs={12}>
             <TextField
               required
               fullWidth

@@ -8,23 +8,13 @@ import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 import { use, useEffect } from 'react';
 
 const Cart = ({item}) => {
+    
     const dispatch=useDispatch()
     useEffect(() => {
         
         dispatch(getCartItem());
     },[])
     
-    // const {cart}=useSelector(state=>state)
-    // console.log(item);
-    
-    // const dispatch=useDispatch()
-    // useEffect(() => {
-        //     console.log("effecting ");
-        
-        //       dispatch(getCartItem());
-        
-        // console.log(cart?.cart.item);
-    //   }, []);
     const updateItemQuantity=(value)=>{
         console.log(value);
         
