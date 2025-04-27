@@ -6,14 +6,14 @@ import AliceCarousel from 'react-alice-carousel';
 
 const HomeSectionCarousel = ({ sectionName, data }) => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [visibleItems, setVisibleItems] = useState(1); // <-- start safe for SSR
+  const [visibleItems, setVisibleItems] = useState(5.5); // default for large screens
 
   const responsive = { 1024: { items: 5.5 }, 768: { items: 3 }, 0: { items: 1 } };
 
   const items = data.map((item, index) => <HomeSectionCard key={index} itemss={item} />);
 
   const slideNext = () => {
-    setActiveIndex((index) => Math.min(index + 1, Math.ceil(items.length - visibleItems)));
+    setActiveIndex((index) => Math.min(index + 1, items.length - 1)); // <- changed here
   };
 
   const slidePrev = () => {
@@ -26,31 +26,22 @@ const HomeSectionCarousel = ({ sectionName, data }) => {
 
   useEffect(() => {
     const updateVisibleItems = () => {
-      if (typeof window !== "undefined") {
-        if (window.innerWidth >= 1024) {
-          setVisibleItems(5.5);
-        } else if (window.innerWidth >= 768) {
-          setVisibleItems(3);
-        } else {
-          setVisibleItems(1);
-        }
+      if (window.innerWidth >= 1024) {
+        setVisibleItems(5.5);
+      } else if (window.innerWidth >= 768) {
+        setVisibleItems(3);
+      } else {
+        setVisibleItems(1);
       }
     };
-
     updateVisibleItems();
-    if (typeof window !== "undefined") {
-      window.addEventListener('resize', updateVisibleItems);
-    }
-    return () => {
-      if (typeof window !== "undefined") {
-        window.removeEventListener('resize', updateVisibleItems);
-      }
-    };
+    window.addEventListener('resize', updateVisibleItems);
+    return () => window.removeEventListener('resize', updateVisibleItems);
   }, []);
 
   return (
     <div className='relative px-4 lg:px-6 m-4 border bg-grey-300 border-grey-800'>
-      <h2 className='text-2xl font-serif font-extrabold w-full p-4 text-grey-400 shadow-lg shadow-[#643535c9]'>{sectionName}</h2>
+      <h2 className='text-2xl font-serif font-extrabold w-full p-4 text-grey-400 shadow-lg shadow-[#643535c9] '>{sectionName}</h2>
       <div className="p-5 relative">
         <AliceCarousel
           controlsStrategy="alternate"
@@ -78,7 +69,7 @@ const HomeSectionCarousel = ({ sectionName, data }) => {
             <KeyboardArrowLeftIcon sx={{ transform: 'rotate(-90deg)', color: 'black' }} />
           </Button>
         )}
-        {activeIndex < items.length - visibleItems && (
+        {activeIndex !== items.length - 1 && ( // <- changed here also
           <Button
             variant='contained'
             className='z-50'
