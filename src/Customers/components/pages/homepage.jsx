@@ -13,8 +13,8 @@ const Homepage = () => {
 
   <MainCarousel/>
   <div className="space-y-10 py-10 flex flex-col justify-center lg:px-3 px-3">
-    <HomeSectionCarousel sectionName="Men's kurta" data={men}/>
-    <HomeSectionCarousel sectionName="Women's saree" data={women}/>
+    <HomeSectionCarousel  sectionName="Men's" data={men}/>
+    <HomeSectionCarousel sectionName="Women's" data={women}/>
     {/* <HomeSectionCarousel sectionName="kid's wear"/> */}
   </div>
   {/* <Footer/> */}
