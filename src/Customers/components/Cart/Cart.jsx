@@ -5,31 +5,37 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import { useDispatch } from 'react-redux';
 import { getCartItem, removeCartItem, updateCartItem } from '../../State/Cart/Action';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
-import { use, useEffect } from 'react';
+import { useEffect } from 'react';
 
 const Cart = ({item}) => {
+    // console.log(item,'item');
+    // console.log(item,'item');
     
     const dispatch=useDispatch()
-    useEffect(() => {
+    // useEffect(() => {
         
-        dispatch(getCartItem());
-    },[])
+    //     dispatch(getCartItem());
+    // },[])
     
     const updateItemQuantity=(value)=>{
         console.log(value);
         
         const data={quantity:item?.quantity+value,cartItemId:item?._id}
         console.log('data',data)
-        dispatch(updateCartItem(data)).then(()=>{
-            dispatch(getCartItem())
-        })
+        dispatch(updateCartItem(data))
+        // .then(()=>{
+        // //     dispatch(getCartItem())
+        // })
         
     }
     const handleRemoveItem=()=>{
         const data={itemId:item?._id}
-        dispatch(removeCartItem(data)).then(()=>{
-            dispatch(getCartItem())
-        })
+        console.log('Removing item with ID:', item?._id);
+        dispatch(removeCartItem(data))
+        
+        // .then(()=>{
+        //     dispatch(getCartItem())
+        // })
        
     }
     

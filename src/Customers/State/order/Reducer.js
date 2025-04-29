@@ -17,7 +17,7 @@ case "CREATE_ORDER_SUCCESS":
 return{...state, order:action.payload,isLoading:false,error:null}
 
 case "GET_ORDER_BY_ID_SUCCESS":
-    return{...state,order:action.payload,isLoading:false,error:null}
+    return{...state,orders:action.payload,isLoading:false,error:null}
 
 case "CREATE_ORDER_FAILURE":
     case "GET_ORDER_BY_ID_FAILURE":

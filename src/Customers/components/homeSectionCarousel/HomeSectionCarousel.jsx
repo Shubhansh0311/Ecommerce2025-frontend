@@ -16,6 +16,8 @@ const HomeSectionCarousel = ({ sectionName, data }) => {
 
   const slideNext = () => {
     if (carouselRef.current) {
+      console.log(carouselRef.current.slideNext);
+      
       carouselRef.current.slideNext();
     }
   };
