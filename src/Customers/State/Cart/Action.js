@@ -20,6 +20,7 @@ const addCartFailure = (error) => ({ type: "ADD_CART_FAILURE", payload: error })
 const addCartItem=(reqdata)=>async(dispatch)=>{
     dispatch(addCartRequest())
     console.log("reqdata",reqdata);
+    dispatch(getCartItem())
     
     try {
         const {data}=await api.post("/api/cart/add",reqdata)

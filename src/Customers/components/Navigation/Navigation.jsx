@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, use, useEffect, useRef, useState } from "react";
 import {
   Button,
   Dialog,
@@ -26,7 +26,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import AuthModal from "../../Auth/AuthModal";
 import { navigation } from "./NavigationData.js";
 import { useDispatch, useSelector } from "react-redux";
-import { getUser } from "../../State/Auth/Action.js";
+import { getUser, logout } from "../../State/Auth/Action.js";
 import { getCartItem } from "../../State/Cart/Action.js";
 
 export default function Navigation() {
@@ -39,11 +39,21 @@ export default function Navigation() {
   const location = useLocation();
 
   const dispatch = useDispatch();
+ 
+ console.log(auth);
+ const ref=useRef();
+ console.log(ref.current?.textContent );
+
+       
   useEffect(
     (jwt) => {
-      dispatch(getCartItem());
+      
       dispatch(getUser(jwt)).then(() => {
+
+       dispatch(getCartItem());
+        
         handleAuthClose();
+      
       });
     },
     [jwt, auth.jwt, dispatch]
@@ -87,9 +97,10 @@ export default function Navigation() {
   };
 
   const handleLogout = () => {
-    dispatch({ type: "LOGOUT", payload: null });
-    window.location.reload();
-    localStorage.clear();
+  
+    dispatch(logout());
+    
+   
     // handleAuthClose(false)
   };
 
@@ -353,7 +364,7 @@ export default function Navigation() {
                 {auth.user?.firstName[0] ? (
                   <Popover className="relative">
                     <PopoverButton className="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800">
-                      <Avatar
+                      <Avatar ref={ref}
                         className="text-white"
                         sx={{ bgcolor: "#4f46e5", cursor: "pointer" }}
                       >

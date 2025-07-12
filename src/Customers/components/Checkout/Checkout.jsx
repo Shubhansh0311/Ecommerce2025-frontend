@@ -25,6 +25,8 @@ export const Checkout = () => {
   const location = useLocation()
   const searchParams = new URLSearchParams(location.search)
   const step = searchParams.get('step')
+  console.log(step);
+  
   const handleNext = () => {
     let newCompleted = completed;
     setActiveStep((prev) => prev + 1);

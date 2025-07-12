@@ -17,7 +17,7 @@ export const createOrder=(reqData)=>async(dispatch)=>{
         const {data}=await api.post('/api/orders',
             reqData.address
         )
-        // console.log("order data",data);
+        console.log("order data",data);
         if(data.id){
             reqData.navigate({search:`step=3&order_id=${data.id}`})
         }
@@ -41,9 +41,17 @@ export const getOrderById=(orderId)=>async(dispatch)=>{
     }   
 }   
 export const getOrderHistory=(reqData)=>async(dispatch)=>{
+    console.log(reqData);
+    
     dispatch(getOrderHistoryRequest())
     try {
-        const {data}=await api.get('/api/orders/history',reqData)
+        const {data}=await api.get(`/api/orders/history/${reqData}`,{reqData})
+        console.log("order history",data);
+        
+         if(data.length===0){
+            reqData.navigate({search:`step=1`})
+        }
+        
         dispatch(getOrderHistorySuccess(data))
     } catch (error) {
         dispatch(getOrderHistoryFailure(error.message))

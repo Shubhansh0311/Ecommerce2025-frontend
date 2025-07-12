@@ -88,7 +88,13 @@ const RegisterForm = () => {
               sx={{ padding: ".8rem 2rem", backgroundColor: "#4f46e5" }}
               type="submit"
             >
-              Register
+           {auth.isLoading ? (
+                <div className="flex items-center justify-center gap-2 ">
+                  <span>Registering...</span>
+                </div>
+              ) : (
+                "Register"
+              )}
             </Button>
           </Grid>
         </Grid>

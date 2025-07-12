@@ -14,7 +14,7 @@ const AuthModal = ({ openAuthModal, handleClose }) => {
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
-    width: "350px",
+    width: window.innerWidth >= 380 ? "350px" : "320px",
     bgcolor: "background.paper",
     borderRadius: "10px",
     // boxShadow: 24,

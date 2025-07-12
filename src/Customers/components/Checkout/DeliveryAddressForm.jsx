@@ -34,12 +34,15 @@ const DeliveryAddressForm = () => {
   const orderSummary = () => {
     if (!selectedAddressId) {
       setAddressError(true);
-      errorRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+      errorRef.current?.scrollIntoView({ behavior: "smooth",top:0 });
       return;
     }
     const selectedAddress = addresses.find(
       (addr) => addr._id === selectedAddressId
     );
+
+    console.log(selectedAddress);
+    
     dispatch(createOrder({ address: selectedAddress, navigate }));
   };
 

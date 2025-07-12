@@ -86,7 +86,7 @@ useEffect(()=>{
     
     const navigate=useNavigate()
     const handleAddToCart=(value)=>{
-        console.log("selectedSize",selectedSize);
+       
         
         const data={productId:product_Id,size:selectedSize?.name}
         

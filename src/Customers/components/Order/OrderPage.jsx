@@ -1,10 +1,23 @@
 import { Grid, Grid2 } from '@mui/material'
-import React from 'react'
+import React, { useEffect } from 'react'
 import OrderCard from './OrderCard'
 import { useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { getOrderHistory } from '../../State/order/Action'
 
 const OrderPage = () => {
+    const dispatch=useDispatch()
+    const {auth}=useSelector((state)=>state.auth)
+    const userId=(auth?.user?._id);
+const orders=useSelector((state)=>state.order)
+
+console.log("orders",orders?.orders?.flat());
+const orderData=orders?.orders?.flat()
+
     const navigate=useNavigate()
+    useEffect(()=>{
+        dispatch(getOrderHistory(userId))
+    },[userId,dispatch])
         const handleOrderDetails=()=>{
             navigate(`/account/order/${5}`)
         }
@@ -41,7 +54,7 @@ const OrderPage = () => {
                 </Grid>
                 <Grid item lg={9}>
                     <div onClick={handleOrderDetails} className='space-y-5 mt-3 lg:m-0'>
-                        {[1, 1, 1, 1].map(item => <OrderCard />)}
+                        {orderData?.map(item => <OrderCard />)}
                     </div>
                 </Grid>
             </Grid>

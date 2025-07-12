@@ -34,6 +34,7 @@ import {
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { findProduct } from "../../State/Product/Action";
+import { Loader } from "../Loader/Loader";
 
 
 const sortOptions = [
@@ -472,9 +473,11 @@ navigate({search:`?${query}`})
               {/* Product grid */}
               <div className="lg:col-span-4 border-2 border-gray-100  w-full ">
                 <div className=" flex flex-wrap gap-6 justify-center bg-white">
-                  {product?.content?.map((product) => (
+
+                  {product?
+                  product?.content?.map((product) => (
                     <ProductCard product={product} />
-                  ))}
+                  )):<Loader />}  
                 </div>
               </div>
             </div>

@@ -3,15 +3,16 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getUser, login } from "../State/Auth/Action";
+import { Loader } from "../components/Loader/Loader";
 
 const LoginForm = () => {
   const dispatch = useDispatch();
   const jwt = localStorage.getItem("jwt");
-const auth = useSelector((store) => store);
-
+  const { auth } = useSelector((store) => store);
+  console.log(auth);
 
   const navigate = useNavigate();
-  
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -22,7 +23,7 @@ const auth = useSelector((store) => store);
     };
 
     dispatch(login(userData));
-dispatch(getUser(jwt));
+    dispatch(getUser(jwt));
 
     // console.log(userData);
   };
@@ -30,8 +31,8 @@ dispatch(getUser(jwt));
   return (
     <div className="w-full max-w-sm mx-auto p-5 border shadow-lg rounded-md">
       <form onSubmit={handleSubmit}>
-        <Grid container  spacing={2}>
-          <Grid item  xs={12}>
+        <Grid container spacing={2}>
+          <Grid item xs={12}>
             <TextField
               required
               fullWidth
@@ -58,7 +59,14 @@ dispatch(getUser(jwt));
               sx={{ padding: ".8rem 2rem", backgroundColor: "#4f46e5" }}
               type="submit"
             >
-              login
+              {auth.isLoading ? (
+                <div className="flex items-center justify-center gap-2 ">
+                  
+                  <Loader/>
+                </div>
+              ) : (
+                "Login"
+              )}
             </Button>
           </Grid>
         </Grid>

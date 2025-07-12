@@ -19,6 +19,8 @@ return{...state, order:action.payload,isLoading:false,error:null}
 case "GET_ORDER_BY_ID_SUCCESS":
     return{...state,orders:action.payload,isLoading:false,error:null}
 
+    case "GET_ORDER_HISTORY_SUCCESS":
+        return{...state,orders:action.payload,isLoading:false,error:null}   
 case "CREATE_ORDER_FAILURE":
     case "GET_ORDER_BY_ID_FAILURE":
         return{...state,isLoading:false,error:action.payload}

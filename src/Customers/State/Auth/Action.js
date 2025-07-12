@@ -1,6 +1,7 @@
 import axios from "axios"
 import { api, BASE_URL } from "../../../config/api.js"
 import { GET_USER_FAILURE, GET_USER_REQUEST, GET_USER_SUCCESS, LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS, REGISTER_FAILURE, REGISTER_REQUEST, REGISTER_SUCCESS } from "./Action_type.js"
+import { getCartItem } from "../Cart/Action.js"
 
 const token=localStorage.getItem('jwt')
 
@@ -28,7 +29,7 @@ export const getUser = (jwt) => async (dispatch) => {
         const user = response.data;
     
         // console.log(user);
-        
+        dispatch(getCartItem())
         dispatch(getUserSuccess(user));
        
     } catch (error) {
@@ -69,10 +70,12 @@ export const login = (userData) => async (dispatch) => {
         const user = response.data;
         if (user.jwt) {
             localStorage.setItem("jwt", user.jwt);
+            dispatch(loginSuccess(user.jwt));
+            dispatch(getCartItem())
+            window.location.href="/"
         }
-        console.log(user);
+        // console.log(user);
         
-        dispatch(loginSuccess(user));
         
         
     } catch (error) {
@@ -88,7 +91,7 @@ export const login = (userData) => async (dispatch) => {
 
 export const logout = (userData) => async (dispatch) => {
     dispatch({type:"LOGOUT",payload:null})
-    window.localStorage.removeItem("jwt")
-    // window.location.reload()
+    localStorage.clear()
+    window.location.href="/"
 };
 
